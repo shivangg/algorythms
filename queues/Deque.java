@@ -165,7 +165,7 @@ public class Deque<Item> implements Iterable<Item> {
 
 		public boolean hasNext()
 		{
-			return(first.next != null);
+			return(first != null);
 		}
 
 		public void remove()
@@ -190,22 +190,22 @@ public class Deque<Item> implements Iterable<Item> {
 		d.addLast(0);
 		d.printDeque();
 
-		// for(Integer i : d)
-		// 	System.out.println(i);
+		for(Integer i : d)
+			System.out.println(i);
 
 		System.out.println("current size is " + d.size);
 
 		// for(Integer i : d)
 		// 	System.out.println(i);
 		
-		System.out.println(d.removeFirst());
-		d.printDeque();
-		System.out.println(d.removeFirst());
-		d.printDeque();
-		System.out.println(d.removeFirst());
-		d.printDeque();
-		System.out.println(d.removeFirst());
-		d.printDeque();
+		// System.out.println(d.removeFirst());
+		// d.printDeque();
+		// System.out.println(d.removeFirst());
+		// d.printDeque();
+		// System.out.println(d.removeFirst());
+		// d.printDeque();
+		// System.out.println(d.removeFirst());
+		// d.printDeque();
 		
 	}
 }
