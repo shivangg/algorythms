@@ -20,7 +20,7 @@ AddLast and removeFirst working fine but the not the `iterator` implementation
 
 hasNext() returns if next possible, it shouldn't return ifEmpty()
 
-addLast(), removeLast() working fine.
+1. addLast(), removeLast() working fine.
 
 The combination of 
 * addFirst
@@ -28,4 +28,7 @@ The combination of
 
 not working. Since, removeLast() works perfectly with addLast(), the problem should be with the addFirst(). Fixed by removing the if for the size = 1.
 
-addFirst, removeLast working fine.
+2. addFirst(), removeLast() working fine.
+
+3. addLast(), removeFirst() working fine.
+

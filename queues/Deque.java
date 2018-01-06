@@ -80,7 +80,7 @@ public class Deque<Item> implements Iterable<Item> {
 			}
 			// make this last also
 			last = n;
-			
+
 			size ++;
 		}
 	}
@@ -198,13 +198,13 @@ public class Deque<Item> implements Iterable<Item> {
 		// for(Integer i : d)
 		// 	System.out.println(i);
 		
-		System.out.println(d.removeLast());
+		System.out.println(d.removeFirst());
 		d.printDeque();
-		System.out.println(d.removeLast());
+		System.out.println(d.removeFirst());
 		d.printDeque();
-		System.out.println(d.removeLast());
+		System.out.println(d.removeFirst());
 		d.printDeque();
-		System.out.println(d.removeLast());
+		System.out.println(d.removeFirst());
 		d.printDeque();
 		
 	}
