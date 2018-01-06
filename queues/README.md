@@ -26,4 +26,6 @@ The combination of
 * addFirst
 * removeLast
 
-not working. Since, removeLast() works perfectly with addLast(), the problem should be with the addFirst().
+not working. Since, removeLast() works perfectly with addLast(), the problem should be with the addFirst(). Fixed by removing the if for the size = 1.
+
+addFirst, removeLast working fine.
