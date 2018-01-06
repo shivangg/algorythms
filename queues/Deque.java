@@ -48,13 +48,9 @@ public class Deque<Item> implements Iterable<Item> {
 			else
 			{
 				n.next = first;
+				first.prev = n;
 			}
 			first = n;
-			if (size == 1)
-			{
-				last.prev = first;
-				first.next = last;				
-			}
 
 			size++;
 		}
@@ -189,16 +185,16 @@ public class Deque<Item> implements Iterable<Item> {
 		System.out.println("Starting unit testing");
 		Deque<Integer> d = new Deque<Integer>();
 
-		d.addLast(3);
+		d.addFirst(3);
 		d.printDeque();
 
-		d.addLast(4);
+		d.addFirst(4);
 		d.printDeque();
 
-		d.addLast(3543);
+		d.addFirst(3543);
 		d.printDeque();
 
-		d.addLast(0);
+		d.addFirst(0);
 		d.printDeque();
 
 		// for(Integer i : d)

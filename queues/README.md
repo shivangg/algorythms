@@ -19,3 +19,11 @@ Added check :
 AddLast and removeFirst working fine but the not the `iterator` implementation
 
 hasNext() returns if next possible, it shouldn't return ifEmpty()
+
+addLast(), removeLast() working fine.
+
+The combination of 
+* addFirst
+* removeLast
+
+not working. Since, removeLast() works perfectly with addLast(), the problem should be with the addFirst().
