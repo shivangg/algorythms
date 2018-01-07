@@ -1,13 +1,11 @@
 import java.util.NoSuchElementException;
-import java.lang.IllegalArgumentException;
-import java.lang.UnsupportedOperationException;
 import java.util.Iterator;
 
 public class Deque<Item> implements Iterable<Item> {
 
 	private Node first;
 	private Node last;
-	int size;
+	private int size;
 
 	private class Node{
 		Item data;
@@ -33,8 +31,8 @@ public class Deque<Item> implements Iterable<Item> {
 
 	public void addFirst(Item item)          // add the item to the front
 	{
-		if(item == null) 
-			throw new java.lang.IllegalArgumentException() ;
+		if (item == null) 
+			throw new IllegalArgumentException() ;
 		else
 		{
 			Node n = new Node();
@@ -59,11 +57,10 @@ public class Deque<Item> implements Iterable<Item> {
 	public void addLast(Item item)           // add the item to the end
 	{
 		if(item == null) 
-			throw new java.lang.IllegalArgumentException();
+			throw new IllegalArgumentException();
 
 		else
 		{
-			System.out.println("Trying to add at last " + item);
 			Node n = new Node();
 			n.data = item;
 			
@@ -88,7 +85,7 @@ public class Deque<Item> implements Iterable<Item> {
 	public Item removeFirst()                // remove and return the item from the front
 	{
 		if(isEmpty()) 
-			throw new java.util.NoSuchElementException();
+			throw new NoSuchElementException();
 		else
 		{
 			// System.out.println("removing");
@@ -115,7 +112,7 @@ public class Deque<Item> implements Iterable<Item> {
 	public Item removeLast()                 // remove and return the item from the end
 	{
 		if(isEmpty()) 
-			throw new java.util.NoSuchElementException();
+			throw new NoSuchElementException();
 		else
 		{
 			Item out = last.data;
@@ -137,16 +134,6 @@ public class Deque<Item> implements Iterable<Item> {
 		}
 	}
 
-	public void printDeque()
-	{
-		if (first == null && last == null) 
-		{
-			System.out.println("first: "+ null + " last: "+ null);	
-		}
-		else
-			System.out.println("first: "+ first.data + " last: "+ last.data);
-	}
-
 	// return an iterator over items in order from front to end
 	public Iterator<Item> iterator()
 	{
@@ -155,56 +142,73 @@ public class Deque<Item> implements Iterable<Item> {
 
 	private class ListIterator implements Iterator<Item>
 	{
+		private Node current = first;
 
 		public Item next()
-		{
-			Item k = removeFirst();
-			// System.out.println("iterating" + k);
-			return(k);
+		{	
+			Item out;
+			if (!hasNext())
+				throw new NoSuchElementException();
+			else
+			{
+				out = current.data;
+				current = current.next;
+				// System.out.println("iterating" + k);
+				return(out);
+			}
 		}
 
 		public boolean hasNext()
 		{
-			return(first != null);
+			return(current != null);
 		}
 
 		public void remove()
 		{
-			throw new java.lang.UnsupportedOperationException();
+			throw new UnsupportedOperationException();
 		}
 	}
+
+	// public void printDeque()
+	// {
+	// 	if (first == null && last == null) 
+	// 	{
+	// 		System.out.println("first: "+ null + " last: "+ null);	
+	// 	}
+	// 	else
+	// 		System.out.println("first: "+ first.data + " last: "+ last.data);
+	// }
+
 	public static void main(String[] args)   // unit testing (optional)
 	{
 		System.out.println("Starting unit testing");
 		Deque<Integer> d = new Deque<Integer>();
 
-		d.addLast(3);
-		d.printDeque();
-
-		d.addLast(4);
-		d.printDeque();
-
-		d.addLast(3543);
-		d.printDeque();
-
-		d.addLast(0);
-		d.printDeque();
+		d.addFirst(1);
+		d.addLast(2);
+		// d.printDeque();
+		// d.printDeque();
+		d.addFirst(3);
+		// d.printDeque();
+		d.addLast(3345);
+		// d.printDeque(); 3 1 2 3345
 
 		for(Integer i : d)
 			System.out.println(i);
 
-		System.out.println("current size is " + d.size);
+		// d.addFirst(1);
+		// d.addLast(2);
+		// System.out.println(d.removeLast());
+		// System.out.println(d.removeLast());
 
-		// for(Integer i : d)
-		// 	System.out.println(i);
 		
-		// System.out.println(d.removeFirst());
+		// System.out.println(d.removeLast());
 		// d.printDeque();
 		// System.out.println(d.removeFirst());
 		// d.printDeque();
 		// System.out.println(d.removeFirst());
 		// d.printDeque();
-		// System.out.println(d.removeFirst());
+		// System.out.println(d.removeLast());
 		// d.printDeque();
 		
 	}

@@ -1,6 +1,4 @@
 import java.util.NoSuchElementException;
-import java.lang.IllegalArgumentException;
-import java.lang.UnsupportedOperationException;
 import java.util.Iterator;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -11,11 +9,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	private Item arr[];
 	private int lastIndex;
 
-	// public int arrlength()
-	// {
-	// 	return arr.length;
-	// }
-	@SuppressWarnings("unchecked")
 	public RandomizedQueue()                 // construct an empty randomized queue
 	{
 		arr = (Item[]) new Object[1];
@@ -24,7 +17,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	}
 	public boolean isEmpty()                 // is the randomized queue empty?
 	{
-		return(lastIndex == -1);
+		return (lastIndex == -1);
 	}
 	public int size()                        // return the number of items on the randomized queue
 	{
@@ -33,11 +26,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	public void enqueue(Item item)           // add the item
 	{
 		if (item == null) {
-			throw new java.lang.IllegalArgumentException();
+			throw new IllegalArgumentException();
 		}
 		else
 		{
-			if(arr.length == lastIndex+1)	
+			if (arr.length == lastIndex+1)	
 			{
 				resize(2 * arr.length);
 			}
@@ -45,11 +38,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 			arr[++lastIndex] = item;
 		}
 	}
-	@SuppressWarnings("unchecked")
 	private void resize(int capacity)
 	{
 		Item copy[] = (Item[]) new Object[capacity];
-		for(int i = 0; i <= lastIndex; i++)
+		for (int i = 0; i <= lastIndex; i++)
 			copy[i] = arr[i];
 
 		arr = copy;
@@ -57,9 +49,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	public Item dequeue()                    // remove and return a random item
 	{	
 		Item out = sample();
+		// fill the hole with the last element
+		arr[randomIndex] = arr[lastIndex];
 		lastIndex--;
 		
-		if ( lastIndex ==  arr.length / 4 )
+		if (lastIndex ==  arr.length / 4)
 		{
 			resize(arr.length / 2);
 		}
@@ -67,6 +61,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		return out;
 	}
 
+	private int randomIndex;
 
 	public Item sample()             // return a random item (but do not remove it)
 	{
@@ -74,17 +69,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		{
 			throw new NoSuchElementException();			
 		}
-		int index;
 		if (lastIndex > 0)
-			index = StdRandom.uniform(lastIndex); 	// get random index
+			randomIndex = StdRandom.uniform(lastIndex+1); 	// get random index
 		else
-			index = 0;
+			randomIndex = 0;
 
 		// sample the element at random index
-		Item out = arr[ index ];
-		// fill the hole with the last element
-		arr[index] = arr[lastIndex];
-
+		Item out = arr[randomIndex];
+		
 		return out;
 	}
 	public Iterator<Item> iterator()         // return an independent iterator over items in random order
@@ -96,11 +88,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	{
 		public Item next()
 		{
-			return(dequeue());
+			return (dequeue());
 		}
 		public boolean hasNext()
 		{
-			return(!isEmpty());
+			return (!isEmpty());
 		}
 		public void remove()
 		{
@@ -120,11 +112,17 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		rn.enqueue(443359);
 		rn.enqueue(4353449);
 
-		for(Integer i : rn)
-		{
-			// System.out.println("Queue size: " + rn.size() + "Array size: " + rn.arrlength());
-			System.out.println(i);
-		}
+		System.out.println(rn.sample());
+		System.out.println(rn.sample());
+		System.out.println(rn.sample());
+		System.out.println(rn.sample());
+		System.out.println(rn.sample());
+
+		// for(Integer i : rn)
+		// {
+		// 	// System.out.println("Queue size: " + rn.size() + "Array size: " + rn.arrlength());
+		// 	System.out.println(i);
+		// }
 
 	}
 }

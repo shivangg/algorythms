@@ -5,6 +5,7 @@ public class Permutation
 {
 	public static void main(String[] args)
 	{
+		int k = Integer.parseInt(args[0]);
 		RandomizedQueue<String> rn = new RandomizedQueue<String>();
 		while(!StdIn.isEmpty())
 		{
@@ -13,7 +14,7 @@ public class Permutation
 			// System.out.println(s);
 		}
 
-		for(int i = 0; i < Integer.parseInt(args[0]); i++)
+		for(int i = 0; i < k; i++)
 			System.out.println(rn.dequeue());
 
 	}

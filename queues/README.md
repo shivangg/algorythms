@@ -52,3 +52,5 @@ Will be done using the randomized queue.
 Randomized Queue APIs leads to simple elegant client code.
 
 Concept reinforced that we should strive to create good API implementaion because it leads to elegant client code. 
+
+** Iterator does NOT change the data structure in any way.
