@@ -54,16 +54,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	}
 	public Item dequeue()                    // remove and return a random item
 	{	
-		int index;
-		if (lastIndex > 0)
-			index = StdRandom.uniform(lastIndex); 	// get random index
-		else
-			index = 0;
-
-		// sample the element at random index
-		Item out = arr[ index ];
-		// fill the hole with the last element
-		arr[index] = arr[lastIndex];
+		Item out = sample();
 		lastIndex--;
 		
 		if ( lastIndex ==  arr.length / 4 )
@@ -75,7 +66,25 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 	}
 
 
-	// public Item sample()             // return a random item (but do not remove it)
+	public Item sample()             // return a random item (but do not remove it)
+	{
+		if (isEmpty())
+		{
+			throw new NoSuchElementException();			
+		}
+		int index;
+		if (lastIndex > 0)
+			index = StdRandom.uniform(lastIndex); 	// get random index
+		else
+			index = 0;
+
+		// sample the element at random index
+		Item out = arr[ index ];
+		// fill the hole with the last element
+		arr[index] = arr[lastIndex];
+
+		return out;
+	}
 	public Iterator<Item> iterator()         // return an independent iterator over items in random order
 	{
 		return new ListIterator();
@@ -90,6 +99,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		public boolean hasNext()
 		{
 			return(!isEmpty());
+		}
+		public void remove()
+		{
+			throw new UnsupportedOperationException();
 		}
 	}
 
