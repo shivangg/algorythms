@@ -43,4 +43,12 @@ Generate random numbers as per the provided package.
 
 But for constant worst time amortized operations for random number pop from queue, the array implementation will be better.
 
-As suggested, the generic array type creation is not permitted in Java, so we will need to (sadly) resolve to the type casting. 
+As suggested, the generic array type creation is not permitted in Java, so we will need to (sadly) resolve to the type casting.
+
+Done with added Exceptions for the bad conditions. 
+
+## Permutation
+Will be done using the randomized queue.
+Randomized Queue APIs leads to simple elegant client code.
+
+Concept reinforced that we should strive to create good API implementaion because it leads to elegant client code. 
