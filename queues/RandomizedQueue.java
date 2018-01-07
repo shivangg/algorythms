@@ -2,31 +2,32 @@ import java.util.NoSuchElementException;
 import java.lang.IllegalArgumentException;
 import java.lang.UnsupportedOperationException;
 import java.util.Iterator;
+import edu.princeton.cs.algs4.StdRandom;
+
+
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
-	private Node first;
-	private Node last;
-	private int size;
+	private Item arr[];
+	private int lastIndex;
 
-	private class Node
-	{
-		Item data;
-		Node next = null;
-	}
+	// public int arrlength()
+	// {
+	// 	return arr.length;
+	// }
 	public RandomizedQueue()                 // construct an empty randomized queue
 	{
-		first = null;
-		last = null;
-		size = 0;
+		arr = (Item[]) new Object[1];
+		lastIndex = -1;
+
 	}
 	public boolean isEmpty()                 // is the randomized queue empty?
 	{
-		return(size==0);
+		return(lastIndex == -1);
 	}
 	public int size()                        // return the number of items on the randomized queue
 	{
-		return size();
+		return lastIndex + 1;
 	}
 	public void enqueue(Item item)           // add the item
 	{
@@ -35,38 +36,45 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		}
 		else
 		{
-			Node n = new Node();
-			n.data = item;
-
-			if (isEmpty())
+			if(arr.length == lastIndex+1)	
 			{
-				first = n;
-				last = n;
-			}
-			else
-			{
-				last.next = n;
-				last = n;
+				resize(2 * arr.length);
 			}
 
-			size++;
+			arr[++lastIndex] = item;
 		}
+	}
+	private void resize(int capacity)
+	{
+		Item copy[] = (Item[]) new Object[capacity];
+		for(int i = 0; i <= lastIndex; i++)
+			copy[i] = arr[i];
+
+		arr = copy;
 	}
 	public Item dequeue()                    // remove and return a random item
-	{
-		Item out = first.data;
-		if(size == 1)
-		{
-			first = null;
-		}
+	{	
+		int index;
+		if (lastIndex > 0)
+			index = StdRandom.uniform(lastIndex); 	// get random index
 		else
-		{
-			first = first.next;
-		}
+			index = 0;
 
-		size--;
+		// sample the element at random index
+		Item out = arr[ index ];
+		// fill the hole with the last element
+		arr[index] = arr[lastIndex];
+		lastIndex--;
+		
+		if ( lastIndex ==  arr.length / 4 )
+		{
+			resize(arr.length / 2);
+		}
+		
 		return out;
 	}
+
+
 	// public Item sample()             // return a random item (but do not remove it)
 	public Iterator<Item> iterator()         // return an independent iterator over items in random order
 	{
@@ -93,9 +101,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 		rn.enqueue(63);
 		rn.enqueue(241);
 		rn.enqueue(4359);
+		rn.enqueue(34359);
+		rn.enqueue(443359);
+		rn.enqueue(4353449);
 
 		for(Integer i : rn)
 		{
+			// System.out.println("Queue size: " + rn.size() + "Array size: " + rn.arrlength());
 			System.out.println(i);
 		}
 

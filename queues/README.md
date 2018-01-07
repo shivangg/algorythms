@@ -32,3 +32,15 @@ not working. Since, removeLast() works perfectly with addLast(), the problem sho
 
 3. addLast(), removeFirst() working fine.
 
+4. addFirst(), removeFirst() 
+
+** Deque working as expected.
+
+## Randomized Queue
+
+Basic queue implemented first, and tested.
+Generate random numbers as per the provided package.
+
+But for constant worst time amortized operations for random number pop from queue, the array implementation will be better.
+
+As suggested, the generic array type creation is not permitted in Java, so we will need to (sadly) resolve to the type casting. 
